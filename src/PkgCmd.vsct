@@ -50,8 +50,8 @@
         <Strings>
           <ButtonText>Attach</ButtonText>
           <CommandName>Attach To Process</CommandName>
-          <CanonicalName>Tools.IISAttachToProcess</CanonicalName>
-          <LocCanonicalName>Tools.IISAttachToProces</LocCanonicalName>
+          <CanonicalName>Tools.AttachToInternetInformationServices</CanonicalName>
+          <LocCanonicalName>Tools.AttachToInternetInformationServices</LocCanonicalName>
         </Strings>
       </Button>
     </Buttons>

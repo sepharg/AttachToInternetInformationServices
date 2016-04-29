@@ -30,6 +30,11 @@ namespace AttachToInternetInformationServices
 
         public void Initialize()
         {
+            // Combo Box
+            var menuMyDropDownComboCommandId = new CommandID(Guids.GuidiisAttachCmdSet, (int)PkgCmdIDs.CmdidMyDropDownCombo);
+            var menuMyDropDownComboCommand = new OleMenuCommand(OnMenuMyDropDownCombo, menuMyDropDownComboCommandId);
+            _mcs.AddCommand(menuMyDropDownComboCommand);
+
             // Get list
             var menuMyDropDownComboGetListCommandId = new CommandID(Guids.GuidiisAttachCmdSet, (int)PkgCmdIDs.CmdidMyDropDownComboGetList);
             var menuMyDropDownComboGetListCommand = new OleMenuCommand(OnMenuMyDropDownComboGetList, menuMyDropDownComboGetListCommandId);
@@ -68,7 +73,40 @@ namespace AttachToInternetInformationServices
             if (command != null)
                 command.Enabled = IisAttachPackage.DTE.Debugger.DebuggedProcesses?.Count == 0;
         }
-        
+
+        private void OnMenuMyDropDownCombo(object sender, EventArgs e)
+        {
+            OleMenuCmdEventArgs eventArgs = e as OleMenuCmdEventArgs;
+
+            if (eventArgs != null)
+            {
+                string newChoice = eventArgs.InValue as string;
+                IntPtr vOut = eventArgs.OutValue;
+
+                if (vOut != IntPtr.Zero)
+                {
+                    if (_currentDropDownComboChoice == null)
+                        RefreshCurrentSelection();
+
+                    // when vOut is non-NULL, the IDE is requesting the current value for the combo
+                    Marshal.GetNativeVariantForObject(CurrentDropDownComboChoice, vOut);
+                }
+               
+                else if (newChoice != null)
+                {
+                    // new value was selected or typed in
+                    // see if it is one of our items
+                    CurrentDropDownComboChoice = _processes.CurrentProcessesName.FirstOrDefault(n => n.Equals(newChoice, StringComparison.OrdinalIgnoreCase));
+                    AttachToProcess();
+                }
+            }
+            else
+            {
+                // We should never get here; EventArgs are required.
+                throw new ArgumentException("EventArgs Required"); // force an exception to be thrown
+            }
+        }
+
         private void RefreshCurrentSelection()
         {
             CurrentDropDownComboChoice = _processes.CurrentProcessesName.FirstOrDefault();
