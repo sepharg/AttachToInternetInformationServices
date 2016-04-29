@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+
+  <Commands package="guidiisAttachPkg">
+    <Groups>
+      <Group guid="guidiisAttachCmdSet" id="AttachButtonGroup" priority="0xFF45">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_STANDARD"/>
+      </Group>
+    </Groups>
+
+    <Combos>
+      <Combo guid="guidiisAttachCmdSet" id="cmdidMyDropDownCombo" priority="0x0010" type="DropDownCombo" defaultWidth="200" idCommandList="cmdidMyDropDownComboGetList">
+        <Parent guid="guidiisAttachCmdSet" id="AttachButtonGroup"/>
+        <Strings>
+          <ButtonText></ButtonText>
+          <ToolTipText>Attach to w3p processes</ToolTipText>
+          <CanonicalName>Tools.IISAttachToProcessComboBox</CanonicalName>
+          <LocCanonicalName>Tools.IISAttachToProcesComboBox</LocCanonicalName>
+        </Strings>
+      </Combo>
+    </Combos>
+
+    <Buttons>
+      <Button guid="guidiisAttachCmdSet" id="cmdidProcessRefresh" priority="0x0011" type="Button">
+        <Parent guid="guidiisAttachCmdSet" id="AttachButtonGroup" />
+        <Icon guid="guidRefresh" id="refresh"/>
+        <Strings>
+          <ButtonText>Refresh</ButtonText>
+          <ToolTipText>Refresh</ToolTipText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidiisAttachCmdSet" id="cmdidAttachAllProcess" priority="0x0008" type="Button">
+        <Parent guid="guidiisAttachCmdSet" id="AttachButtonGroup" />
+        <CommandFlag>IconAndText</CommandFlag>
+        <Icon guid="guidDebugAll" id="debug"/>
+        <Strings>
+          <ButtonText>Attach All</ButtonText>
+          <CommandName>Attach To All w3wp Processes</CommandName>
+        </Strings>
+      </Button>
+      
+      <Button guid="guidiisAttachCmdSet" id="cmdidAttachProcess" priority="0x0009" type="Button">
+        <Parent guid="guidiisAttachCmdSet" id="AttachButtonGroup" />
+        <CommandFlag>IconAndText</CommandFlag>
+        <Icon guid="guidDebug" id="debug"/>
+        <Strings>
+          <ButtonText>Attach</ButtonText>
+          <CommandName>Attach To Process</CommandName>
+          <CanonicalName>Tools.IISAttachToProcess</CanonicalName>
+          <LocCanonicalName>Tools.IISAttachToProces</LocCanonicalName>
+        </Strings>
+      </Button>
+    </Buttons>
+
+    <Bitmaps>
+      <Bitmap guid="guidRefresh" href="Resources\Refresh.png" usedList="refresh" />
+      <Bitmap guid="guidDebug" href="Resources\Debug.png" usedList="debug" />
+      <Bitmap guid="guidDebugAll" href="Resources\DebugAll.png" usedList="debug" />
+    </Bitmaps>
+  </Commands>
+  <Symbols>
+    <GuidSymbol name="guidiisAttachPkg" value="{40d9f297-25fb-4264-99ed-7785f8331c94}" />
+
+    <GuidSymbol name="guidiisAttachCmdSet" value="{B2C8E135-0E7A-4696-963E-BD3280F8578C}">
+      <IDSymbol name="AttachButtonGroup" value="0x1030"/>
+      <IDSymbol name="cmdidMyDropDownCombo" value="0x101"/>
+      <IDSymbol name="cmdidMyDropDownComboGetList" value="0x102"/>
+      <IDSymbol name="cmdidProcessRefresh" value="0x103"/>
+      <IDSymbol name="cmdidAttachProcess" value="0x104"/>
+      <IDSymbol name="cmdidAttachAllProcess" value="0x105"/>
+    </GuidSymbol>
+
+    <GuidSymbol name="guidRefresh" value="{51f54cc4-4444-4ae5-a1a6-d44f946b7cbe}" >
+      <IDSymbol name="refresh" value="1" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidDebug" value="{51f54cc4-4444-4ae5-a1a6-d44f946b7cbf}" >
+      <IDSymbol name="debug" value="1" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidDebugAll" value="{51f54cc4-4444-4ae5-a1a6-d45f946b7cbf}" >
+      <IDSymbol name="debug" value="1" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
